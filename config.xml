@@ -13,17 +13,17 @@
         <name>HotelApp</name>
 
         <description>
-            Aplicación de prueba para hoteles. 
+        	Aplicación de prueba de un hotel 
         </description>
 
         <author href="http://igitsoft.com" email="info@igitsoft.com">
-            Carlos Celma
+        	Carlos Celma
         </author>
-        
-        <icon src="img/icon.png" />
-        
-        <gap:plugin name="org.apache.cordova.dialogs" />
-        <gap:plugin name="org.apache.cordova.media-capture" />
-        <gap:plugin name="org.apache.cordova.vibration" />
+
+		<!-- Plugins -->
+		<gap:plugin name="org.apache.cordova.dialogs" />
+		<gap:plugin name="org.apache.cordova.device" />
+		<gap:plugin name="org.apache.cordova.media-capture" />
         <gap:plugin name="org.apache.cordova.file-transfer" />
-</widget>
+		<gap:plugin name="org.apache.cordova.network-information" />
+    </widget>

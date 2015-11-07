@@ -1,35 +1,22 @@
-var ft = {
+var fileTransfer = {
 	win: function (r) {
-    	if(r.response){
-    		// EXITOSO
-    		navigator.notification.alert(
-			    'Registrado Correctamente',  // message
-			    function(){
-			    	navigator.vibrate(2000);
-			    	navigator.notification.beep(1);
-			    	window.localStorage.setItem('uuid', 10);
-			    	window.location.href = "#home";
-			    },         // callback
-			    'Bienvenido',            // title
-			    'Registrado'                  // buttonName
-			);
-
-    	}else{
-    		alert("Error");
-    	}
+		if(r.response == '1'){
+			navigator.notification.alert("Los datos se han enviado satisfactoriamente", ls.registroLocal, "Registro Correcto", "Aceptar");
+		}else{
+			alert("Error");
+		}
+			
 	},
-
 	fail: function (error) {
-	    alert("Error "+error.code);
+		alert("An error has occurred: Code = " + error.code);
 	},
-
-	start: function(path){		
+	sendPhoto: function(path){
 		var options = new FileUploadOptions();
 		options.fileKey = "foto";
-		options.fileName = "Ismael";
+		options.fileName = "Carlos";
 		options.mimeType = "image/jpeg";
 
 		var ft = new FileTransfer();
-		ft.upload(path, encodeURI("http://carlos.igitsoft.com/apps/test.php"), ft.win, ft.fail, options);
+		ft.upload(path, "http://carlos.igitsoft.com/apps/test.php", fileTransfer.win, fileTransfer.fail, options);
 	}
 };

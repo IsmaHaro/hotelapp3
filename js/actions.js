@@ -1,74 +1,69 @@
 var fn = {
-    init:function(){
-       // alert();
-        //var x = false;
-        if (!fn.estaRegistrado())
-            window.location.href = '#registro';
-        $('#regSend').click(fn.getReg);
-        $('#tomarFoto').click(mc.start());
-    
-    },
+	init: function(){
+		if(!fn.islogged())
+			window.location.href = "#reg";
 
-    deviceready: function(){
-        document.addEventListener("deviceready", fn.init, false);
-    },
+		
+		//Funcionalidades de Registro
+		$('#regSend').click(fn.getRegister);
+		$('#takePhoto').click(mediaCapture.takePhoto);
+		$('#nr1 ul[data-role = listview] a').click(fn.seleccionarTipo);
+		$('#nr1 div[data-role = navbar] li').click(fn.nr1Siguiente);	
+		$('#nr2 div[data-role = navbar] li').click(fn.nr2Reservar);	
+	},
+	ready:function(){
+		document.addEventListener("deviceready", fn.init, false);
+	},
+	islogged: function(){
+		return ls.estaRegistrado();
+	},
+	getRegister: function(){
+		var nom = $('#regName').val();
+		var tel = $('#regTel').val();
+		var mail = $('#regMail').val();
+		var foto = $('#regPhoto').attr('rel');
+		if(nom != '' && tel != '' && mail != '' && foto != undefined && foto != ''){
+			server.regSend(nom, tel, mail, foto);
+		}else{
+			navigator.notification.alert('Todos los campos son requeridos', null, "Error de Registro", "Aceptar");
+		}
+	},
+	seleccionarTipo: function(){
+		$(this).parents("ul").find("a").removeClass('ui-btn-active');
+		$(this).addClass("ui-btn-active");
+		$("#nr1").attr("th", $(this).text());
+	},
+	nr1Siguiente: function(){
+		if($(this).index() == 1 && $("#nr1").attr("th") != undefined){
+			/* Opcion seleccionada, pasar a la siguiente pantalla
+			*/
+			window.location.href="#nr2";
 
-    estaRegistrado: function(){
-        if(window.localStorage.getItem('uuid') != undefined){
-            return true;
-        }
+		}else{
+			if($(this).index() != 0){
+				alert("Es necesario seleccionar un tipo de habitacion");
+			}
+		}
+	},
+	nr2Reservar: function(){
+		var th = $("#nr1").attr("th");
+		var np = $("#numPersonas").val();
+		var nh = $("#numHabitaciones").val();
+		var nd = $("#numDias").val();
 
-        return false;
-    }
-    
-    getReg: function(){
-       // var nom=document.getElementById('regNom').value;
+		if(conexion.estaConectado()){
+			/*Enviar informacion al servidor */
+			server.envRes(th, np, nh, nd);
 
-        var nom  = $('#regNom').val();
-        var tel  = $('#regTel').val();
-        var mail = $('#regMail').val();
-        var foto = $('#fotoTomada').attr("rel");
-        
-        if (nom!= '' && tel!= '' && mail!= '' && foto !=  undefined && foto != ''){
-            //alert(nom + '-' + tel + '-'+ mail);
-            fn.enviarRegistro(nom, mail, tel, foto);
-        }
-        else{
-            navigator.notification.alert('Todos los campos son requeridos');
-        }
-    },
-    enviarRegistro: function(nombre, mail, telefono, foto){
-        $.ajax({
-              method: "POST",
-              url: "http://carlos.igitsoft.com/apps/test.php",
-              data: { 
-                nom: nombre,
-                mail: mail,
-                tel: telefono
-              }
-        }).done(function(msg){
-            if(msg == 1){
-                //ENVIAR FOTO
-                ft.start(foto);
-            }else{
-                alert("Datos incorrectos");
-            }
-        });
-    }
-    
-    
+		}else{
+			/*Almacenar en el dispositvo*/
+			$.mobile.loading("show");
+			almacen.guardarReserva(th, np, nh, nd);
+			$.mobile.loading("hide");
+		}
+	}
 };
-/*window.addEventListener("load",fn.init,false);*/
-/*jQuery(dcoument).ready(fn.init);*/
-//$(dcoument).ready(fn.init);
 
-// COMENTAR LINEA DE ABAJO CUANDO
-// LA APP ESTE LISTA PARA COMPILAR
+$(fn.ready);
 
-//$(fn.init);
-
-// DESCOMENTAR LINEA DE ABAJO CUANDO
-// LA APP ESTE LISTA PARA COMPILAR
-
-$(fn.deviceready);
-
+//fn.init();
