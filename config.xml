@@ -21,10 +21,10 @@
         </author>
 
 		<!-- Plugins -->
-<gap:plugin name="org.apache.cordova.device" source="pgb" version="0.3.0" />
-<gap:plugin name="org.apache.cordova.dialogs" source="pgb" version="0.3.0" />
-<gap:plugin name="org.apache.cordova.file-transfer" source="pgb" version="0.5.0" />
-<gap:plugin name="org.apache.cordova.media-capture" source="pgb" version="0.3.6" />
-<gap:plugin name="org.apache.cordova.network-information" source="pgb" version="0.2.15" />
+        <gap:plugin name="org.apache.cordova.device" source="pgb" version="0.3.0" />
+        <gap:plugin name="org.apache.cordova.dialogs" source="pgb" version="0.3.0" />
+        <gap:plugin name="org.apache.cordova.file-transfer" source="pgb" version="0.5.0" />
+        <gap:plugin name="org.apache.cordova.media-capture" source="pgb" version="0.3.6" />
+        <gap:plugin name="org.apache.cordova.network-information" source="pgb" version="0.2.15" />
 
     </widget>
