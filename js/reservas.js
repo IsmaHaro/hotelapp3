@@ -19,7 +19,7 @@ alert("aaaaaaaaaaaaaaa");
 	},
 	exito: function(){
 		alert("Reserva guardada en dispositivo, en espera de sincronizacion");
-		$.mobile.loading("hide");
+		//$.mobile.loading("hide");
 	},
 	tablaReserva: function(tx){
 alert("Guardando reserva");
@@ -28,4 +28,4 @@ alert("Guardando reserva");
 			VALUES ("+almacen.th+","+almacen.np+","+almacen.nh+","+almacen.nd+")");
 alert("Reserva guardada en BD");
 	}
-}
+};

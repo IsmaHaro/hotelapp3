@@ -12,4 +12,4 @@ var ls = {
 		else
 			return false;
 	}
-}
+};

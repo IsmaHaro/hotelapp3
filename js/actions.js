@@ -59,7 +59,7 @@ alert("Reserva: conectado");
 		}else{
 alert("Reserva: desconectado");
 			/*Almacenar en el dispositvo*/
-			$.mobile.loading("show");
+			//$.mobile.loading("show");
 			almacen.guardarReserva(th, np, nh, nd);
 		}
 	}
