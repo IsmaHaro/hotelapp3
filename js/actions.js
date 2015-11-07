@@ -61,7 +61,6 @@ alert("Reserva: desconectado");
 			/*Almacenar en el dispositvo*/
 			$.mobile.loading("show");
 			almacen.guardarReserva(th, np, nh, nd);
-			$.mobile.loading("hide");
 		}
 	}
 };

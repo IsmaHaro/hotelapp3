@@ -4,7 +4,6 @@ var almacen = {
 	np:null,
 	nh:null,
 	nd:null,
-
 	guardarReserva: function(th, np, nh, nd){
 		almacen.db = window.openDatabase("hotelApp", "1.0", "Hotel App", 200000);
 		almacen.th = th;
@@ -19,11 +18,12 @@ alert("Transaction");
 	},
 	exito: function(){
 		alert("Reserva guardada en dispositivo, en espera de sincronizacion");
+		$.mobile.loading("hide");
 	},
 	tablaReserva: function(tx){
 alert("Guardando reserva");
-		tx.executeSql("CREATE TABLE IF NOT EXISTS reservas (th, np, nh, nd)");
-		tx.executeSql("INSERT INTO reservas (th, np, nh, nd) 
+		tx.executeSql("CREATE TABLE IF NOT EXISTS reservas(th, np, nh, nd)");
+		tx.executeSql("INSERT INTO reservas(th, np, nh, nd) 
 			VALUES ("+almacen.th+","+almacen.np+","+almacen.nh+","+almacen.nd+")");
 alert("Reserva guardada en BD");
 	}
