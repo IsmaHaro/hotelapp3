@@ -1,4 +1,4 @@
-// Guardar reservaciones
+// Guardar reservaciones en el dispositivo
 var almacen = {
 	db: null,
 	th: null,
@@ -26,3 +26,5 @@ var almacen = {
 			VALUES ("+almacen.th+","+almacen.np+","+almacen.nh+","+almacen.nd+")");
 	}
 };
+
+
