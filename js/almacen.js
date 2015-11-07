@@ -1,3 +1,4 @@
+// Guardar reservaciones
 var almacen = {
 	db: null,
 	th: null,
