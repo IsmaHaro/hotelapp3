@@ -2,7 +2,6 @@ var fn = {
 	init: function(){
 		if(!fn.islogged())
 			window.location.href = "#reg";
-
 		
 		//Funcionalidades de Registro
 		$('#regSend').click(fn.getRegister);
