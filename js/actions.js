@@ -50,12 +50,14 @@ var fn = {
 		var np = $("#numPersonas").val();
 		var nh = $("#numHabitaciones").val();
 		var nd = $("#numDias").val();
-
+alert("Reserva: conexion");
 		if(conexion.estaConectado()){
+alert("Reserva: conectado");
 			/*Enviar informacion al servidor */
 			server.envRes(th, np, nh, nd);
 
 		}else{
+alert("Reserva: desconectado");
 			/*Almacenar en el dispositvo*/
 			$.mobile.loading("show");
 			almacen.guardarReserva(th, np, nh, nd);
